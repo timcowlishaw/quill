@@ -1,6 +1,8 @@
 # Quill
 
-TODO: Write a gem description
+Quill helps you write cleaner, clearer ruby code, by disentangling the business
+of specifying a classes dependencies from the business of constructing and
+supplying them.
 
 ## Installation
 
