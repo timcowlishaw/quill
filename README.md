@@ -34,7 +34,7 @@ class UIController
 
   #The names of the features we depend on. These will be passed in order as
 arguments to the constructor.
-  depends [:logger, :display]
+  depends :logger, :display
 
   def initialize(logger, display)
     @logger = logger
@@ -84,7 +84,7 @@ other arguments, using the 'curried' option:
     extend Quill::DSL
 
     provides :inventory_display
-    depends [:display]
+    depends :display
     curried
 
     #the display dependency is injected, items is not.
