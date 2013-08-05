@@ -33,7 +33,7 @@ class UIController
   provides :ui_controller
 
   #The names of the features we depend on. These will be passed in order as
-arguments to the constructor.
+  #arguments to the constructor.
   depends :logger, :display
 
   def initialize(logger, display)
