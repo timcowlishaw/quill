@@ -4,7 +4,11 @@ module Quill
 
     def factory
       raise "You must specify a feature provided by the class" unless provided_feature
-      @factory ||= Quill::Factory.new(self, :feature => provided_feature, :dependencies => @dependencies || [])
+      @factory ||= Quill::Factory.new(self, {
+        :feature => provided_feature,
+        :dependencies => @dependencies || [],
+        :curried => curried?
+      })
     end
 
     def provides(feature_name)
@@ -15,7 +19,15 @@ module Quill
       @dependencies = dependency_names
     end
 
+    def curried(value = true)
+      @curried = value
+    end
+
     private
       attr_reader :provided_feature
+
+      def curried?
+        !!@curried
+      end
   end
 end

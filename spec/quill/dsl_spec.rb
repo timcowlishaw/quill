@@ -25,22 +25,46 @@ describe "Quill::DSL" do
   context "when a provided feature name is supplied" do
     context "when no dependencies are supplied" do
       it "exposes a Quill factory wrapping the extended class with the specified feature name and no dependencies" do
-        expect(Quill::Factory).to receive(:new).with(extending_class, :feature => :feature_name, :dependencies => []).and_return(factory)
+        expect(Quill::Factory).to receive(:new).with(extending_class, {
+          :feature => :feature_name, :dependencies => [], :curried => false
+        }).and_return(factory)
+
         extending_class.instance_eval do
           extend Quill::DSL
           provides :feature_name
         end
+
         expect(extending_class.factory).to be == factory
       end
     end
 
     context "when dependencies are supplied" do
       it "exposes a Quill factory wrapping the extended class with the specified feature name and the_specified dependencies" do
-        expect(Quill::Factory).to receive(:new).with(extending_class, :feature => :feature_name, :dependencies => [:dependency_1, :dependency_2]).and_return(factory)
+        expect(Quill::Factory).to receive(:new).with(extending_class, {
+          :feature => :feature_name,
+          :dependencies => [:dependency_1, :dependency_2],
+          :curried => false
+        }).and_return(factory)
+
         extending_class.instance_eval do
           extend Quill::DSL
           provides :feature_name
           depends :dependency_1, :dependency_2
+        end
+
+        expect(extending_class.factory).to be == factory
+      end
+    end
+
+    context "when the factory is specified as curried" do
+      it "exposes a curried Quill factory wrapping the extended class with the specified feature name" do
+        expect(Quill::Factory).to receive(:new).with(extending_class, {
+          :feature => :feature_name, :dependencies => [], :curried => true
+        })
+        extending_class.instance_eval do
+          extend Quill::DSL
+          provides :feature_name
+          curried
         end
         expect(extending_class.factory).to be == factory
       end
