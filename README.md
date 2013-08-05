@@ -113,7 +113,13 @@ Injection](https://speakerdeck.com/bestie/improve-your-ruby-code-with-dependency
   - Support for argument hashes
   - Support for Ruby 2.0 named arguments
   - Configurable instance memoization
-
+  - Better documentation and examples (including YARD, and an example of rails integration)
+  - Benchmarks
+  - Improved API to use factories directly, making use of the DSL optional
+  - Maybe some more experimental / advanced features:
+    - structural (duck-typed) dependency specifications
+    - inheritable dependency specifications
+    
 
 ## Contributing
 
