@@ -32,3 +32,7 @@ Feature: Declaring and Satisfying Dependencies
     And I call the factory
     And I call the returned proc with additional arguments
     Then the factory should receive the singleton dependency and the additional arguments
+
+  Scenario: Satisfying dependencies for factories that take an arguments hash
+
+  Scenario: Satisfying dependencies for curried factories that take an arguments hash

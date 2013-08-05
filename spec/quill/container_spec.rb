@@ -38,7 +38,6 @@ describe Quill::Container do
       end
     end
 
-
     context "registering a class without a factory" do
       it "raises an error" do
         klass = double(:class)
