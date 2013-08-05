@@ -56,7 +56,7 @@ with them:
   container.register_class(UIController)
 
   #register implementation for every feature, so that the container can resolve
-the dependencies:
+  #the dependencies:
   container.register_class(Logger)
 
   #You can also register single instances as named features:
