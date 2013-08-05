@@ -1,4 +1,5 @@
 require 'quill/unsatisfied_dependency_error'
+require 'quill/no_factory_error'
 module Quill
   class Container
     def initialize
@@ -6,12 +7,14 @@ module Quill
       @factories = {}
     end
 
-    def register_singleton(name, instance)
-      @singletons[name] = instance
+    def register_singleton(feature, instance)
+      @singletons[feature] = instance
     end
 
-    def register_factory(factory)
-      @factories[factory.name] = factory
+    def register_class(klass)
+      raise NoFactoryError.new(klass) unless klass.respond_to?(:factory)
+      factory = klass.factory
+      @factories[factory.feature] = factory
     end
 
     def [](name)
@@ -27,7 +30,7 @@ module Quill
 
     def instance_from_named_factory(name)
       factory = @factories[name]
-      factory && factory.call
+      factory && factory.call(self)
     end
   end
 end

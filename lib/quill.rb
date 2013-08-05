@@ -1,5 +1,5 @@
-require "quill/version"
-
 module Quill
-  # Your code goes here...
 end
+require "quill/version"
+require "quill/container"
+require "quill/dsl"
