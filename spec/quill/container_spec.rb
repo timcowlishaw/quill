@@ -7,6 +7,17 @@ describe Quill::Container do
   let(:instance) { double(:instance) }
   let(:name) { double(:factory) }
 
+  describe "requesting features which don't exist" do
+    it "raises an unment dependecy error for the feature" do
+      expect {
+        container[:non_existant_feature]
+      }.to raise_error { |error|
+        expect(error).to be_instance_of(Quill::UnsatisfiedDependencyError)
+        expect(error.dependency).to be == :non_existant_feature
+      }
+    end
+  end
+
   describe "registering and returning singletons" do
     it "returns the registed instance" do
       container.register_singleton(name, instance)

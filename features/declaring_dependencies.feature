@@ -20,6 +20,12 @@ Feature: Declaring and Satisfying Dependencies
     Then the dependency factory should receive the singleton instance of its dependency
     And the factory should receive an instance created by the dependency factory
 
+  Scenario: Raising an error when dependencies are not satisfied
+    Given I have a factory with a named dependency
+    When I satisfy the named dependency with another factory that has a dependency
+    And I call the factory
+    Then an unmet dependency error should be raised for the transitive depenency
+
   Scenario: Satisfying dependencies for curried factories
     Given I have a curried factory with a named dependency
     When I satisfy the named dependency with a singleton

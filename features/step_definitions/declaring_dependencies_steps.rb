@@ -25,7 +25,11 @@ When(/^I satisfy the named dependency with a singleton$/) do
 end
 
 When(/^I call the factory$/) do
-  @feature = @container[:feature]
+  begin
+    @feature = @container[:feature]
+  rescue Exception => e
+    @error = e
+  end
 end
 
 When(/^I satisfy the named dependency with another factory that has no dependencies$/) do
@@ -70,4 +74,9 @@ end
 Then(/^the factory should receive the singleton dependency and the additional arguments$/) do
   expect(@feature.dependency).to be == @dependency
   expect(@feature.argument).to be == @argument
+end
+
+Then(/^an unmet dependency error should be raised for the transitive depenency$/) do
+  @error.should be_instance_of(Quill::UnsatisfiedDependencyError)
+  @error.dependency.should be == :transitive_dependency
 end
