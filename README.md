@@ -92,13 +92,13 @@ other arguments, using the 'curried' option:
       @display = display
       @items = items
     end
+end
 
-    container = Quill::Container.new
-    container.register_class(InventoryDisplay)
+container = Quill::Container.new
+container.register_class(InventoryDisplay)
 
-    display_builder_proc = container[:inventory_display]
-
-    display_builder_proc.call(inventory) #=> Constructs and returns an instance
+display_builder_proc = container[:inventory_display]
+display_builder_proc.call(inventory) #=> Constructs and returns an instance
 ```
 
 ## Why?
