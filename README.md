@@ -105,7 +105,7 @@ other arguments, using the 'curried' option:
   [Dependency
 Injection](https://speakerdeck.com/bestie/improve-your-ruby-code-with-dependency-injection) is a fundamental pattern in object oriented programming, and is invaluable for making sure your code is testable and minimally coupled. However, it's often difficult to work out where the responsiblity for satisfying dependencies should happen. Quill takes care of this for you, with a simple, minimal framework for configuring your application's dependencies.
 
-## Compatibiliyu
+## Compatibility
   Tested with Ruby 1.9.3
 
 ## Still to come
